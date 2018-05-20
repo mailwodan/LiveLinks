@@ -37,6 +37,8 @@ var testApp = new Vue({
                 name: itemValue.name,
                 age: itemValue.age
             }); 
+            console.log(this.sitterList[itemKey]);
+            console.log(this.sitterList[itemKey].name);
         }
     },
 });
