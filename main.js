@@ -17,7 +17,8 @@ var testApp = new Vue({
             age: ''
         },
         sitterList: {
-        }
+        },
+        selectedSitter: ''
     },
     methods: {
         addSitter(name, age) {
