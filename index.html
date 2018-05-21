@@ -14,7 +14,9 @@
 
 <body>
     <div class="container" id="test">
-
+        
+        <button type="button" class="btn btn-default" @click="show">Show</button>
+        
         <form @submit.prevent="addSitter(sitter.name, sitter.age)" method="POST" role="form">
             <legend>Add sitter</legend>
 

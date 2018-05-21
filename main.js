@@ -39,13 +39,17 @@ var testApp = new Vue({
             }); 
             console.log(this.sitterList[itemKey]);
             console.log(this.sitterList[itemKey].name);
+        },
+        show(){
+            showSitters();
         }
     },
 });
 
-ref.on('value', function (val1) {
-    console.log(val1.val());
-    testApp.sitterList = val1.val();
-});
-
+function showSitters() {
+    ref.on('value', function (val1) {
+        console.log(val1.val());
+        testApp.sitterList = val1.val();
+    });
+}
 
