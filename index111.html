@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset='utf-8' />
+    <meta http-equiv='X-UA-Compatible' content='IE=edge' <title>Live Links</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <link rel='stylesheet' type='text/css' media='screen' href='main.css' />
+    <link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css' integrity='sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u'
+        crossorigin='anonymous'>
+    <script src='https://unpkg.com/vue'></script>
+    <script src="https://www.gstatic.com/firebasejs/5.0.3/firebase.js"></script>
+</head>
+
+<body>
+    <div class="container" id="test">
+
+        <button type="button" class="btn btn-default" @click="show">Show</button>
+
+        <select v-model="selectedSitter" class="form-control">
+            <option v-for="(itemValue, itemKey, itemIndex) in sitterList" :key="itemValue['.key']" v-bind:value="itemKey">
+                {{ itemValue.name }}
+            </option>
+        </select>
+        <span>Выбрано: {{ selectedSitter }}</span>
+
+        <form @submit.prevent="addSitter(sitter.name, sitter.age)" method="POST" role="form">
+            <legend>Add sitter</legend>
+
+            <div class="form-group">
+                <label for="">Name</label>
+                <input type="text" class="form-control" v-model="sitter.name">
+            </div>
+            <div class="form-group">
+                <label for="">Age</label>
+                <input type="text" class="form-control" v-model="sitter.age">
+            </div>
+
+            <button type="submit" class="btn btn-primary">Add</button>
+        </form>
+
+        <div v-for="(itemValue, itemKey, itemIndex) in sitterList" :key="itemValue['.key']">
+
+            <label>name = {{itemValue.name}}</label>
+            <input type="text" class="form-control" v-model="itemValue.name">
+            <br>
+            <label>age = {{itemValue.age}}</label>
+            <input type="text" class="form-control" v-model="itemValue.age">
+            <br>
+            <label>itemKey = {{itemKey}}</label>
+            <br>
+            <button type="button" class="btn btn-success" @click="deleteItem(itemKey)">delete</button>
+            <button type="button" class="btn btn-success" @click="saveItem(itemValue, itemKey)">Save</button>
+            <hr>
+        </div>
+
+
+
+    </div>
+
+    <script>
+        // Initialize Firebase
+        var config = {
+            apiKey: "AIzaSyCuQGSGPOhKjZuNF1LLjGWZANTM7UwGGv8",
+            authDomain: "livelinks-00005.firebaseapp.com",
+            databaseURL: "https://livelinks-00005.firebaseio.com",
+            projectId: "livelinks-00005",
+            storageBucket: "livelinks-00005.appspot.com",
+            messagingSenderId: "851868279766"
+        };
+        firebase.initializeApp(config);
+    </script>
+    <script src='main.js'></script>
+</body>
+
+</html>
